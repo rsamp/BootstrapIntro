@@ -1,0 +1,51 @@
+
+<div class="row">
+  <div class="form-group col-xs-4 col-xs-offset-1">
+    <h1><%= @user.username %></h1>
+
+    <p>Hello, <%= @user.username %></p>
+
+    <p>Current Counter Value: <%= @user.counter %></p>
+  </div>
+</div>
+
+<form action="/user/counter" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+
+  <div class="row">
+    <div class="form-group col-xs-4 col-xs-offset-1">
+      <input
+        type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-xs-4 col-xs-offset-1">
+      <label for="user_counter">New Counter Value</label>
+      <input type="number" name="user[counter]" id="user_counter">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-xs-4 col-xs-offset-1">
+      <input class="brn btn-primary" type="submit" value="Update Counter!">
+    </div>
+  </div>
+
+</form>
+
+<form action="/session" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <div class="row">
+    <div class="form-group col-xs-4 col-xs-offset-1">
+      <input class="btn btn-primary" type="submit" value="Logout!">
+    </div>
+  </div>
+</form>
