@@ -26,7 +26,19 @@
         <li><%= link_to("About", about_url) %></li>
       </ul>
       <ul class="nav navbar-nav pull-right">
-        <li><%= link_to("Sign In", home_url) %></li>
+        <li><%= link_to("Sign In", new_session_url) unless current_user %></li>
+        <% if current_user %>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <%= current_user.username %>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><%= link_to("Profile", user_url) if current_user %></li>
+            <li><%= link_to("Sign Out", session_url, method: :delete) if current_user %></li>
+          </ul>
+        </div>
+        <% end %>
       </ul>
     </div>
   </div>
